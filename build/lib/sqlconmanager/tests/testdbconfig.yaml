@@ -1,0 +1,11 @@
+---
+database_configurations:
+    dev_test:
+        credentials:
+            update:
+                - tsd_dev
+                - for_small_tests_only
+        host: mike_db_dev
+        port: 3306
+        dbname: tsd_dev_test
+        dbtype: mysql

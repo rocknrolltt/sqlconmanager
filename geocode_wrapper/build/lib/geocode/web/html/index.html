@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Benchmark Geocoder Home Page</title>
+	<meta name="generator" content="BBEdit 10.5" />
+<style>
+table.confluenceTable { border: none; padding: 0; margin: 0; }
+table.confluenceTable td { border: 1px solid #333; padding: 0.3em 0.7em; }
+</style>
+</head>
+<body>
+<h3>Welcome to the Benchmark Geocoder Web Service</h3>
+
+
+<h2>Overview</h2>
+<p>This is a geocoder (wrapper) web service controlled by Verisk Climate.</p>
+
+<h2>Authentication</h2>
+<p>An authentication token is provided to clients. If the authentication token is valid, the web service will process the request.</p>
+
+<p>If the authentication token is valid, an INVALID_KEY response will be returned. See Response for details.</p>
+
+<h2>Interface</h2>
+<p>This is a RESTful web service which geocodes addresses to coordinates.</p>
+
+<ul>
+<li>Clients initiate HTTP GET requests, providing the required URL parameters</li>
+<li>If the request is valid, the web service provides a JSON response</li>
+</ul>
+
+<h3>Request Format</h3>
+<h4>URI Base:</h4>
+<p>Form: http://host:port/endpoint/version/geocode/json/?parameters</p>
+<p>Example: http://64.244.34.228:8080/geocoder/LATEST/geocode/json?parameters</p>
+<p>(At this time, only the JSON response format is supported)</p>
+
+<h4>Request Parameters</h4>
+
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">Parameter</th><th class="confluenceTh">Description</th><th colspan="1" class="confluenceTh">Example</th></tr>
+<tr><td class="confluenceTd">street</td>
+<td class="confluenceTd">required<br />street # and street name as a string </td>
+<td colspan="1" class="confluenceTd">&quot;131 Hartwell Ave&quot; </td></tr>
+<tr><td class="confluenceTd">city</td>
+<td class="confluenceTd">required<br />full city name as a string</td>
+<td colspan="1" class="confluenceTd">&quot;Lexington&quot;</td></tr>
+<tr><td class="confluenceTd">state_prov</td>
+<td class="confluenceTd">2-letter US state/Canadian province abbreviations</td>
+<td colspan="1" class="confluenceTd">&quot;MA&quot;</td></tr>
+<tr><td class="confluenceTd">postal_code</td>
+<td class="confluenceTd"><p>(USA) 5 or 9 digit zip code or (CAN) 6-character postal code (space optional)</p></td>
+<td colspan="1" class="confluenceTd">&quot;02421&quot;</td></tr>
+<tr><td class="confluenceTd">country</td>
+<td class="confluenceTd"><p>optional<br /><span style="line-height: 1.4285715;">ISO Standard 3-letter Country Codes (e.g., USA or CAN)</span></p><p><span style="line-height: 1.4285715;">if country is not provided, the default country value is &quot;USA&quot;</span></p></td>
+<td colspan="1" class="confluenceTd">&quot;USA&quot;</td></tr>
+<tr><td class="confluenceTd">key</td>
+<td class="confluenceTd">An API key provided by Verisk Climate for authentication/authorization of requests</td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+<tr><td colspan="1" class="confluenceTd">geocoder</td>
+<td colspan="1" class="confluenceTd"><p>INTERNAL ONLY<br /><span style="line-height: 1.4285715;">ISO|Google|etc</span></p><p><span style="line-height: 1.4285715;">(comma separated list of geocoder names)<br /></span></p></td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+</tbody></table>
+
+
+<h4>Response</h4>
+<h5>HTTP Codes</h5>
+<p>OK response: 200<br />Internal Error: 500</p>
+<p>The response is a JSON string with the following fields:</p>
+
+<div class="table-wrap">
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">field</th><th class="confluenceTh">description</th></tr>
+<tr><td class="confluenceTd">latitude</td>
+<td class="confluenceTd"><span>the latitude coordinate as a decimal</span></td></tr>
+<tr><td class="confluenceTd">longitude</td>
+<td class="confluenceTd">the longitude coordinate as a decimal</td></tr>
+<tr><td class="confluenceTd">quality</td>
+<td class="confluenceTd">0|1 (if the quality is 0, latitude and longitude should be <strong>not</strong> be used – and may be a fill value!)</td></tr>
+<tr><td class="confluenceTd">formatted_address</td>
+<td class="confluenceTd">the resolved address string from the input parameters.</td></tr>
+<tr><td class="confluenceTd">status</td>
+<td class="confluenceTd"><p>A string defining the status of the request:</p><p><strong>OK</strong>: valid request processed without error</p><p><strong>INVALID_ADDR</strong>: valid request, but could not geocode with sufficient quality</p><p><strong>INVALID</strong>: invalid request (missing/ill-formed required input parameters)</p><p><strong>INVALID_KEY</strong>: invalid API key</p><p><span><strong>UNKNOWN_ERROR</strong>: this request may be successful if retried at a later time</span></p></td></tr>
+</tbody></table>
+
+</div>
+
+<p>Example</p>
+
+<pre>{
+   &quot;latitude&quot;  : 42.462458,
+   &quot;longitude&quot; : -71.268015,
+   &quot;quality&quot;   : 1,
+   &quot;formatted_address&quot; : &quot;131 Hartwell Ave, Lexington MA 02421&quot;,
+   &quot;status&quot; : &quot;OK&quot;
+}
+</pre>
+
+<p>Valid request, could not geocode:</p>
+
+<pre>{
+    &quot;status&quot; : &quot;INVALID_ADDR&quot;,
+    &quot;latitude&quot; : 0.0,
+    &quot;longitude&quot; : 0.0,
+    &quot;quality&quot; : 0,
+    &quot;formatted_address&quot; : &quot;500 Hartwell Ave, Lexington MA 02421&quot;
+}</pre>
+
+</body>
+</html>

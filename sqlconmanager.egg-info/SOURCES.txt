@@ -1,0 +1,13 @@
+setup.py
+sqlconmanager/__init__.py
+sqlconmanager/connection_manager.py
+sqlconmanager.egg-info/PKG-INFO
+sqlconmanager.egg-info/SOURCES.txt
+sqlconmanager.egg-info/dependency_links.txt
+sqlconmanager.egg-info/not-zip-safe
+sqlconmanager.egg-info/requires.txt
+sqlconmanager.egg-info/top_level.txt
+sqlconmanager/resources/dbconfig.yaml
+sqlconmanager/tests/__init__.py
+sqlconmanager/tests/test_conmanager.py
+sqlconmanager/tests/testdbconfig.yaml

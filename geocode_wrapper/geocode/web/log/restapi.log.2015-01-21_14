@@ -1,0 +1,626 @@
+[2015-01-21 13:36:26,844][DEBUG][p20936][geocodeService.py:86] returning app
+[2015-01-21 13:36:26,845][DEBUG][p20936][geocodeService.py:306] Use user database: user.db
+[2015-01-21 13:36:26,846][DEBUG][p20936][geocodeService.py:308] run app with dev_logging.cfg
+[2015-01-21 13:36:27,027][INFO][p20936][_internal.py:87]  * Running on http://127.0.0.1:24601/
+[2015-01-21 13:36:27,028][INFO][p20936][_internal.py:87]  * Restarting with reloader
+[2015-01-21 13:36:27,866][DEBUG][p20941][geocodeService.py:86] returning app
+[2015-01-21 13:36:27,867][DEBUG][p20941][geocodeService.py:306] Use user database: user.db
+[2015-01-21 13:36:27,867][DEBUG][p20941][geocodeService.py:308] run app with dev_logging.cfg
+[2015-01-21 13:37:00,898][DEBUG][p20953][geocodeService.py:86] returning app
+[2015-01-21 13:37:00,899][DEBUG][p20953][geocodeService.py:306] Use user database: user.db
+[2015-01-21 13:37:00,899][DEBUG][p20953][geocodeService.py:308] run app with dev_logging.cfg
+[2015-01-21 13:37:00,920][INFO][p20953][_internal.py:87]  * Running on http://127.0.0.1:24601/
+[2015-01-21 13:37:00,920][INFO][p20953][_internal.py:87]  * Restarting with reloader
+[2015-01-21 13:37:01,664][DEBUG][p20958][geocodeService.py:86] returning app
+[2015-01-21 13:37:01,664][DEBUG][p20958][geocodeService.py:306] Use user database: user.db
+[2015-01-21 13:37:01,665][DEBUG][p20958][geocodeService.py:308] run app with dev_logging.cfg
+[2015-01-21 13:37:26,730][DEBUG][p20958][geocodeService.py:262] <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Benchmark Geocoder Home Page</title>
+	<meta name="generator" content="BBEdit 10.5" />
+<style>
+table.confluenceTable { border: none; padding: 0; margin: 0; }
+table.confluenceTable td { border: 1px solid #333; padding: 0.3em 0.7em; }
+</style>
+</head>
+<body>
+<h3>Welcome to the Benchmark Geocoder Web Service</h3>
+
+
+<h2>Overview</h2>
+<p>This is a geocoder (wrapper) web service controlled by Verisk Climate.</p>
+
+<h2>Authentication</h2>
+<p>An authentication token is provided to clients. If the authentication token is valid, the web service will process the request.</p>
+
+<p>If the authentication token is valid, an INVALID_KEY response will be returned. See Response for details.</p>
+
+<h2>Interface</h2>
+<p>This is a RESTful web service which geocodes addresses to coordinates.</p>
+
+<ul>
+<li>Clients initiate HTTP GET requests, providing the required URL parameters</li>
+<li>If the request is valid, the web service provides a JSON response</li>
+</ul>
+
+<h3>Request Format</h3>
+<h4>URI Base:</h4>
+<p>Form: http://host:port/endpoint/version/geocode/json/?parameters</p>
+<p>Example: http://64.244.34.228:8080/geocoder/LATEST/geocode/json?parameters</p>
+<p>(At this time, only the JSON response format is supported)</p>
+
+<h4>Request Parameters</h4>
+
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">Parameter</th><th class="confluenceTh">Description</th><th colspan="1" class="confluenceTh">Example</th></tr>
+<tr><td class="confluenceTd">street</td>
+<td class="confluenceTd">required<br />street # and street name as a string </td>
+<td colspan="1" class="confluenceTd">&quot;131 Hartwell Ave&quot; </td></tr>
+<tr><td class="confluenceTd">city</td>
+<td class="confluenceTd">required<br />full city name as a string</td>
+<td colspan="1" class="confluenceTd">&quot;Lexington&quot;</td></tr>
+<tr><td class="confluenceTd">state_prov</td>
+<td class="confluenceTd">2-letter US state/Canadian province abbreviations</td>
+<td colspan="1" class="confluenceTd">&quot;MA&quot;</td></tr>
+<tr><td class="confluenceTd">postal_code</td>
+<td class="confluenceTd"><p>(USA) 5 or 9 digit zip code or (CAN) 6-character postal code (space optional)</p></td>
+<td colspan="1" class="confluenceTd">&quot;02421&quot;</td></tr>
+<tr><td class="confluenceTd">country</td>
+<td class="confluenceTd"><p>optional<br /><span style="line-height: 1.4285715;">ISO Standard 3-letter Country Codes (e.g., USA or CAN)</span></p><p><span style="line-height: 1.4285715;">if country is not provided, the default country value is &quot;USA&quot;</span></p></td>
+<td colspan="1" class="confluenceTd">&quot;USA&quot;</td></tr>
+<tr><td class="confluenceTd">key</td>
+<td class="confluenceTd">An API key provided by Verisk Climate for authentication/authorization of requests</td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+<tr><td colspan="1" class="confluenceTd">geocoder</td>
+<td colspan="1" class="confluenceTd"><p>INTERNAL ONLY<br /><span style="line-height: 1.4285715;">ISO|Google|etc</span></p><p><span style="line-height: 1.4285715;">(comma separated list of geocoder names)<br /></span></p></td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+</tbody></table>
+
+
+<h4>Response</h4>
+<h5>HTTP Codes</h5>
+<p>OK response: 200<br />Internal Error: 500</p>
+<p>The response is a JSON string with the following fields:</p>
+
+<div class="table-wrap">
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">field</th><th class="confluenceTh">description</th></tr>
+<tr><td class="confluenceTd">latitude</td>
+<td class="confluenceTd"><span>the latitude coordinate as a decimal</span></td></tr>
+<tr><td class="confluenceTd">longitude</td>
+<td class="confluenceTd">the longitude coordinate as a decimal</td></tr>
+<tr><td class="confluenceTd">quality</td>
+<td class="confluenceTd">0|1 (if the quality is 0, latitude and longitude should be <strong>not</strong> be used – and may be a fill value!)</td></tr>
+<tr><td class="confluenceTd">formatted_address</td>
+<td class="confluenceTd">the resolved address string from the input parameters.</td></tr>
+<tr><td class="confluenceTd">status</td>
+<td class="confluenceTd"><p>A string defining the status of the request:</p><p><strong>OK</strong>: valid request processed without error</p><p><strong>INVALID_ADDR</strong>: valid request, but could not geocode with sufficient quality</p><p><strong>INVALID</strong>: invalid request (missing/ill-formed required input parameters)</p><p><strong>INVALID_KEY</strong>: invalid API key</p><p><span><strong>UNKNOWN_ERROR</strong>: this request may be successful if retried at a later time</span></p></td></tr>
+</tbody></table>
+
+</div>
+
+<p>Example</p>
+
+<pre>{
+   &quot;latitude&quot;  : 42.462458,
+   &quot;longitude&quot; : -71.268015,
+   &quot;quality&quot;   : 1,
+   &quot;formatted_address&quot; : &quot;131 Hartwell Ave, Lexington MA 02421&quot;,
+   &quot;status&quot; : &quot;OK&quot;
+}
+</pre>
+
+<p>Valid request, could not geocode:</p>
+
+<pre>{
+    &quot;status&quot; : &quot;INVALID_ADDR&quot;,
+    &quot;latitude&quot; : 0.0,
+    &quot;longitude&quot; : 0.0,
+    &quot;quality&quot; : 0,
+    &quot;formatted_address&quot; : &quot;500 Hartwell Ave, Lexington MA 02421&quot;
+}</pre>
+
+</body>
+</html>
+[2015-01-21 13:37:26,731][INFO][p20958][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 13:37:26] "GET / HTTP/1.1" 200 -
+[2015-01-21 13:37:26,817][INFO][p20958][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 13:37:26] "GET /favicon.ico HTTP/1.1" 404 -
+[2015-01-21 13:37:26,825][INFO][p20958][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 13:37:26] "GET /favicon.ico HTTP/1.1" 404 -
+[2015-01-21 13:43:42,007][DEBUG][p21030][geocodeService.py:86] returning app
+[2015-01-21 13:43:42,008][DEBUG][p21030][geocodeService.py:306] Use user database: user.db
+[2015-01-21 13:43:42,008][DEBUG][p21030][geocodeService.py:308] run app with dev_logging.cfg
+[2015-01-21 13:43:42,032][INFO][p21030][_internal.py:87]  * Running on http://127.0.0.1:24601/
+[2015-01-21 13:43:42,032][INFO][p21030][_internal.py:87]  * Restarting with reloader
+[2015-01-21 13:43:42,794][DEBUG][p21035][geocodeService.py:86] returning app
+[2015-01-21 13:43:42,795][DEBUG][p21035][geocodeService.py:306] Use user database: user.db
+[2015-01-21 13:43:42,795][DEBUG][p21035][geocodeService.py:308] run app with dev_logging.cfg
+[2015-01-21 13:44:28,122][DEBUG][p21035][geocodeService.py:262] <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Benchmark Geocoder Home Page</title>
+	<meta name="generator" content="BBEdit 10.5" />
+<style>
+table.confluenceTable { border: none; padding: 0; margin: 0; }
+table.confluenceTable td { border: 1px solid #333; padding: 0.3em 0.7em; }
+</style>
+</head>
+<body>
+<h3>Welcome to the Benchmark Geocoder Web Service</h3>
+
+
+<h2>Overview</h2>
+<p>This is a geocoder (wrapper) web service controlled by Verisk Climate.</p>
+
+<h2>Authentication</h2>
+<p>An authentication token is provided to clients. If the authentication token is valid, the web service will process the request.</p>
+
+<p>If the authentication token is valid, an INVALID_KEY response will be returned. See Response for details.</p>
+
+<h2>Interface</h2>
+<p>This is a RESTful web service which geocodes addresses to coordinates.</p>
+
+<ul>
+<li>Clients initiate HTTP GET requests, providing the required URL parameters</li>
+<li>If the request is valid, the web service provides a JSON response</li>
+</ul>
+
+<h3>Request Format</h3>
+<h4>URI Base:</h4>
+<p>Form: http://host:port/endpoint/version/geocode/json/?parameters</p>
+<p>Example: http://64.244.34.228:8080/geocoder/LATEST/geocode/json?parameters</p>
+<p>(At this time, only the JSON response format is supported)</p>
+
+<h4>Request Parameters</h4>
+
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">Parameter</th><th class="confluenceTh">Description</th><th colspan="1" class="confluenceTh">Example</th></tr>
+<tr><td class="confluenceTd">street</td>
+<td class="confluenceTd">required<br />street # and street name as a string </td>
+<td colspan="1" class="confluenceTd">&quot;131 Hartwell Ave&quot; </td></tr>
+<tr><td class="confluenceTd">city</td>
+<td class="confluenceTd">required<br />full city name as a string</td>
+<td colspan="1" class="confluenceTd">&quot;Lexington&quot;</td></tr>
+<tr><td class="confluenceTd">state_prov</td>
+<td class="confluenceTd">2-letter US state/Canadian province abbreviations</td>
+<td colspan="1" class="confluenceTd">&quot;MA&quot;</td></tr>
+<tr><td class="confluenceTd">postal_code</td>
+<td class="confluenceTd"><p>(USA) 5 or 9 digit zip code or (CAN) 6-character postal code (space optional)</p></td>
+<td colspan="1" class="confluenceTd">&quot;02421&quot;</td></tr>
+<tr><td class="confluenceTd">country</td>
+<td class="confluenceTd"><p>optional<br /><span style="line-height: 1.4285715;">ISO Standard 3-letter Country Codes (e.g., USA or CAN)</span></p><p><span style="line-height: 1.4285715;">if country is not provided, the default country value is &quot;USA&quot;</span></p></td>
+<td colspan="1" class="confluenceTd">&quot;USA&quot;</td></tr>
+<tr><td class="confluenceTd">key</td>
+<td class="confluenceTd">An API key provided by Verisk Climate for authentication/authorization of requests</td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+<tr><td colspan="1" class="confluenceTd">geocoder</td>
+<td colspan="1" class="confluenceTd"><p>INTERNAL ONLY<br /><span style="line-height: 1.4285715;">ISO|Google|etc</span></p><p><span style="line-height: 1.4285715;">(comma separated list of geocoder names)<br /></span></p></td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+</tbody></table>
+
+
+<h4>Response</h4>
+<h5>HTTP Codes</h5>
+<p>OK response: 200<br />Internal Error: 500</p>
+<p>The response is a JSON string with the following fields:</p>
+
+<div class="table-wrap">
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">field</th><th class="confluenceTh">description</th></tr>
+<tr><td class="confluenceTd">latitude</td>
+<td class="confluenceTd"><span>the latitude coordinate as a decimal</span></td></tr>
+<tr><td class="confluenceTd">longitude</td>
+<td class="confluenceTd">the longitude coordinate as a decimal</td></tr>
+<tr><td class="confluenceTd">quality</td>
+<td class="confluenceTd">0|1 (if the quality is 0, latitude and longitude should be <strong>not</strong> be used – and may be a fill value!)</td></tr>
+<tr><td class="confluenceTd">formatted_address</td>
+<td class="confluenceTd">the resolved address string from the input parameters.</td></tr>
+<tr><td class="confluenceTd">status</td>
+<td class="confluenceTd"><p>A string defining the status of the request:</p><p><strong>OK</strong>: valid request processed without error</p><p><strong>INVALID_ADDR</strong>: valid request, but could not geocode with sufficient quality</p><p><strong>INVALID</strong>: invalid request (missing/ill-formed required input parameters)</p><p><strong>INVALID_KEY</strong>: invalid API key</p><p><span><strong>UNKNOWN_ERROR</strong>: this request may be successful if retried at a later time</span></p></td></tr>
+</tbody></table>
+
+</div>
+
+<p>Example</p>
+
+<pre>{
+   &quot;latitude&quot;  : 42.462458,
+   &quot;longitude&quot; : -71.268015,
+   &quot;quality&quot;   : 1,
+   &quot;formatted_address&quot; : &quot;131 Hartwell Ave, Lexington MA 02421&quot;,
+   &quot;status&quot; : &quot;OK&quot;
+}
+</pre>
+
+<p>Valid request, could not geocode:</p>
+
+<pre>{
+    &quot;status&quot; : &quot;INVALID_ADDR&quot;,
+    &quot;latitude&quot; : 0.0,
+    &quot;longitude&quot; : 0.0,
+    &quot;quality&quot; : 0,
+    &quot;formatted_address&quot; : &quot;500 Hartwell Ave, Lexington MA 02421&quot;
+}</pre>
+
+</body>
+</html>
+[2015-01-21 13:44:28,124][INFO][p21035][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 13:44:28] "GET / HTTP/1.1" 200 -
+[2015-01-21 14:00:59,236][DEBUG][p21263][geocodeService.py:86] returning app
+[2015-01-21 14:00:59,237][DEBUG][p21263][geocodeService.py:308] Use user database: user.db
+[2015-01-21 14:00:59,238][DEBUG][p21263][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 14:00:59,272][INFO][p21263][_internal.py:87]  * Running on http://127.0.0.1:24601/
+[2015-01-21 14:00:59,273][INFO][p21263][_internal.py:87]  * Restarting with reloader
+[2015-01-21 14:01:00,030][DEBUG][p21268][geocodeService.py:86] returning app
+[2015-01-21 14:01:00,031][DEBUG][p21268][geocodeService.py:308] Use user database: user.db
+[2015-01-21 14:01:00,031][DEBUG][p21268][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 14:07:51,205][DEBUG][p21268][geocodeService.py:264] <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Benchmark Geocoder Home Page</title>
+	<meta name="generator" content="BBEdit 10.5" />
+<style>
+table.confluenceTable { border: none; padding: 0; margin: 0; }
+table.confluenceTable td { border: 1px solid #333; padding: 0.3em 0.7em; }
+</style>
+</head>
+<body>
+<h3>Welcome to the Benchmark Geocoder Web Service</h3>
+
+
+<h2>Overview</h2>
+<p>This is a geocoder (wrapper) web service controlled by Verisk Climate.</p>
+
+<h2>Authentication</h2>
+<p>An authentication token is provided to clients. If the authentication token is valid, the web service will process the request.</p>
+
+<p>If the authentication token is valid, an INVALID_KEY response will be returned. See Response for details.</p>
+
+<h2>Interface</h2>
+<p>This is a RESTful web service which geocodes addresses to coordinates.</p>
+
+<ul>
+<li>Clients initiate HTTP GET requests, providing the required URL parameters</li>
+<li>If the request is valid, the web service provides a JSON response</li>
+</ul>
+
+<h3>Request Format</h3>
+<h4>URI Base:</h4>
+<p>Form: http://host:port/endpoint/version/geocode/json/?parameters</p>
+<p>Example: http://64.244.34.228:8080/geocoder/LATEST/geocode/json?parameters</p>
+<p>(At this time, only the JSON response format is supported)</p>
+
+<h4>Request Parameters</h4>
+
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">Parameter</th><th class="confluenceTh">Description</th><th colspan="1" class="confluenceTh">Example</th></tr>
+<tr><td class="confluenceTd">street</td>
+<td class="confluenceTd">required<br />street # and street name as a string </td>
+<td colspan="1" class="confluenceTd">&quot;131 Hartwell Ave&quot; </td></tr>
+<tr><td class="confluenceTd">city</td>
+<td class="confluenceTd">required<br />full city name as a string</td>
+<td colspan="1" class="confluenceTd">&quot;Lexington&quot;</td></tr>
+<tr><td class="confluenceTd">state_prov</td>
+<td class="confluenceTd">2-letter US state/Canadian province abbreviations</td>
+<td colspan="1" class="confluenceTd">&quot;MA&quot;</td></tr>
+<tr><td class="confluenceTd">postal_code</td>
+<td class="confluenceTd"><p>(USA) 5 or 9 digit zip code or (CAN) 6-character postal code (space optional)</p></td>
+<td colspan="1" class="confluenceTd">&quot;02421&quot;</td></tr>
+<tr><td class="confluenceTd">country</td>
+<td class="confluenceTd"><p>optional<br /><span style="line-height: 1.4285715;">ISO Standard 3-letter Country Codes (e.g., USA or CAN)</span></p><p><span style="line-height: 1.4285715;">if country is not provided, the default country value is &quot;USA&quot;</span></p></td>
+<td colspan="1" class="confluenceTd">&quot;USA&quot;</td></tr>
+<tr><td class="confluenceTd">key</td>
+<td class="confluenceTd">An API key provided by Verisk Climate for authentication/authorization of requests</td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+<tr><td colspan="1" class="confluenceTd">geocoder</td>
+<td colspan="1" class="confluenceTd"><p>INTERNAL ONLY<br /><span style="line-height: 1.4285715;">ISO|Google|etc</span></p><p><span style="line-height: 1.4285715;">(comma separated list of geocoder names)<br /></span></p></td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+</tbody></table>
+
+
+<h4>Response</h4>
+<h5>HTTP Codes</h5>
+<p>OK response: 200<br />Internal Error: 500</p>
+<p>The response is a JSON string with the following fields:</p>
+
+<div class="table-wrap">
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">field</th><th class="confluenceTh">description</th></tr>
+<tr><td class="confluenceTd">latitude</td>
+<td class="confluenceTd"><span>the latitude coordinate as a decimal</span></td></tr>
+<tr><td class="confluenceTd">longitude</td>
+<td class="confluenceTd">the longitude coordinate as a decimal</td></tr>
+<tr><td class="confluenceTd">quality</td>
+<td class="confluenceTd">0|1 (if the quality is 0, latitude and longitude should be <strong>not</strong> be used – and may be a fill value!)</td></tr>
+<tr><td class="confluenceTd">formatted_address</td>
+<td class="confluenceTd">the resolved address string from the input parameters.</td></tr>
+<tr><td class="confluenceTd">status</td>
+<td class="confluenceTd"><p>A string defining the status of the request:</p><p><strong>OK</strong>: valid request processed without error</p><p><strong>INVALID_ADDR</strong>: valid request, but could not geocode with sufficient quality</p><p><strong>INVALID</strong>: invalid request (missing/ill-formed required input parameters)</p><p><strong>INVALID_KEY</strong>: invalid API key</p><p><span><strong>UNKNOWN_ERROR</strong>: this request may be successful if retried at a later time</span></p></td></tr>
+</tbody></table>
+
+</div>
+
+<p>Example</p>
+
+<pre>{
+   &quot;latitude&quot;  : 42.462458,
+   &quot;longitude&quot; : -71.268015,
+   &quot;quality&quot;   : 1,
+   &quot;formatted_address&quot; : &quot;131 Hartwell Ave, Lexington MA 02421&quot;,
+   &quot;status&quot; : &quot;OK&quot;
+}
+</pre>
+
+<p>Valid request, could not geocode:</p>
+
+<pre>{
+    &quot;status&quot; : &quot;INVALID_ADDR&quot;,
+    &quot;latitude&quot; : 0.0,
+    &quot;longitude&quot; : 0.0,
+    &quot;quality&quot; : 0,
+    &quot;formatted_address&quot; : &quot;500 Hartwell Ave, Lexington MA 02421&quot;
+}</pre>
+
+</body>
+</html>
+[2015-01-21 14:07:51,206][INFO][p21268][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 14:07:51] "GET / HTTP/1.1" 200 -
+[2015-01-21 14:08:42,176][ERROR][p21268][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 14:08:42] code 400, message Bad request syntax ('GET /geocoder/?city=Lexington & country=USA & street=131 Hartwell Ave & postal_code=02421 & key=32aab59a-0482-4950-b3a5-8caaec18235c & state_prov=MA HTTP/1.1')
+[2015-01-21 14:08:42,176][INFO][p21268][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 14:08:42] "GET /geocoder/?city=Lexington & country=USA & street=131 Hartwell Ave & postal_code=02421 & key=32aab59a-0482-4950-b3a5-8caaec18235c & state_prov=MA HTTP/1.1" 400 -
+[2015-01-21 14:10:25,293][INFO][p21268][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 14:10:25] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 500 -
+[2015-01-21 14:44:15,616][INFO][p21268][_internal.py:87]  * Detected change in 'geocodeService.py', reloading
+[2015-01-21 14:44:15,651][INFO][p21263][_internal.py:87]  * Restarting with reloader
+[2015-01-21 14:45:14,047][DEBUG][p21525][geocodeService.py:86] returning app
+[2015-01-21 14:45:14,049][DEBUG][p21525][geocodeService.py:308] Use user database: user.db
+[2015-01-21 14:45:14,049][DEBUG][p21525][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 14:45:14,085][INFO][p21525][_internal.py:87]  * Running on http://127.0.0.1:24601/
+[2015-01-21 14:45:14,087][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 14:45:14,836][DEBUG][p21530][geocodeService.py:86] returning app
+[2015-01-21 14:45:14,837][DEBUG][p21530][geocodeService.py:308] Use user database: user.db
+[2015-01-21 14:45:14,837][DEBUG][p21530][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 14:45:21,278][DEBUG][p21530][geocodeService.py:264] <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Benchmark Geocoder Home Page</title>
+	<meta name="generator" content="BBEdit 10.5" />
+<style>
+table.confluenceTable { border: none; padding: 0; margin: 0; }
+table.confluenceTable td { border: 1px solid #333; padding: 0.3em 0.7em; }
+</style>
+</head>
+<body>
+<h3>Welcome to the Benchmark Geocoder Web Service</h3>
+
+
+<h2>Overview</h2>
+<p>This is a geocoder (wrapper) web service controlled by Verisk Climate.</p>
+
+<h2>Authentication</h2>
+<p>An authentication token is provided to clients. If the authentication token is valid, the web service will process the request.</p>
+
+<p>If the authentication token is valid, an INVALID_KEY response will be returned. See Response for details.</p>
+
+<h2>Interface</h2>
+<p>This is a RESTful web service which geocodes addresses to coordinates.</p>
+
+<ul>
+<li>Clients initiate HTTP GET requests, providing the required URL parameters</li>
+<li>If the request is valid, the web service provides a JSON response</li>
+</ul>
+
+<h3>Request Format</h3>
+<h4>URI Base:</h4>
+<p>Form: http://host:port/endpoint/version/geocode/json/?parameters</p>
+<p>Example: http://64.244.34.228:8080/geocoder/LATEST/geocode/json?parameters</p>
+<p>(At this time, only the JSON response format is supported)</p>
+
+<h4>Request Parameters</h4>
+
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">Parameter</th><th class="confluenceTh">Description</th><th colspan="1" class="confluenceTh">Example</th></tr>
+<tr><td class="confluenceTd">street</td>
+<td class="confluenceTd">required<br />street # and street name as a string </td>
+<td colspan="1" class="confluenceTd">&quot;131 Hartwell Ave&quot; </td></tr>
+<tr><td class="confluenceTd">city</td>
+<td class="confluenceTd">required<br />full city name as a string</td>
+<td colspan="1" class="confluenceTd">&quot;Lexington&quot;</td></tr>
+<tr><td class="confluenceTd">state_prov</td>
+<td class="confluenceTd">2-letter US state/Canadian province abbreviations</td>
+<td colspan="1" class="confluenceTd">&quot;MA&quot;</td></tr>
+<tr><td class="confluenceTd">postal_code</td>
+<td class="confluenceTd"><p>(USA) 5 or 9 digit zip code or (CAN) 6-character postal code (space optional)</p></td>
+<td colspan="1" class="confluenceTd">&quot;02421&quot;</td></tr>
+<tr><td class="confluenceTd">country</td>
+<td class="confluenceTd"><p>optional<br /><span style="line-height: 1.4285715;">ISO Standard 3-letter Country Codes (e.g., USA or CAN)</span></p><p><span style="line-height: 1.4285715;">if country is not provided, the default country value is &quot;USA&quot;</span></p></td>
+<td colspan="1" class="confluenceTd">&quot;USA&quot;</td></tr>
+<tr><td class="confluenceTd">key</td>
+<td class="confluenceTd">An API key provided by Verisk Climate for authentication/authorization of requests</td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+<tr><td colspan="1" class="confluenceTd">geocoder</td>
+<td colspan="1" class="confluenceTd"><p>INTERNAL ONLY<br /><span style="line-height: 1.4285715;">ISO|Google|etc</span></p><p><span style="line-height: 1.4285715;">(comma separated list of geocoder names)<br /></span></p></td>
+<td colspan="1" class="confluenceTd"> </td></tr>
+</tbody></table>
+
+
+<h4>Response</h4>
+<h5>HTTP Codes</h5>
+<p>OK response: 200<br />Internal Error: 500</p>
+<p>The response is a JSON string with the following fields:</p>
+
+<div class="table-wrap">
+<table class="confluenceTable" cellpadding=0 cellspacing=0>
+<tbody><tr><th class="confluenceTh">field</th><th class="confluenceTh">description</th></tr>
+<tr><td class="confluenceTd">latitude</td>
+<td class="confluenceTd"><span>the latitude coordinate as a decimal</span></td></tr>
+<tr><td class="confluenceTd">longitude</td>
+<td class="confluenceTd">the longitude coordinate as a decimal</td></tr>
+<tr><td class="confluenceTd">quality</td>
+<td class="confluenceTd">0|1 (if the quality is 0, latitude and longitude should be <strong>not</strong> be used – and may be a fill value!)</td></tr>
+<tr><td class="confluenceTd">formatted_address</td>
+<td class="confluenceTd">the resolved address string from the input parameters.</td></tr>
+<tr><td class="confluenceTd">status</td>
+<td class="confluenceTd"><p>A string defining the status of the request:</p><p><strong>OK</strong>: valid request processed without error</p><p><strong>INVALID_ADDR</strong>: valid request, but could not geocode with sufficient quality</p><p><strong>INVALID</strong>: invalid request (missing/ill-formed required input parameters)</p><p><strong>INVALID_KEY</strong>: invalid API key</p><p><span><strong>UNKNOWN_ERROR</strong>: this request may be successful if retried at a later time</span></p></td></tr>
+</tbody></table>
+
+</div>
+
+<p>Example</p>
+
+<pre>{
+   &quot;latitude&quot;  : 42.462458,
+   &quot;longitude&quot; : -71.268015,
+   &quot;quality&quot;   : 1,
+   &quot;formatted_address&quot; : &quot;131 Hartwell Ave, Lexington MA 02421&quot;,
+   &quot;status&quot; : &quot;OK&quot;
+}
+</pre>
+
+<p>Valid request, could not geocode:</p>
+
+<pre>{
+    &quot;status&quot; : &quot;INVALID_ADDR&quot;,
+    &quot;latitude&quot; : 0.0,
+    &quot;longitude&quot; : 0.0,
+    &quot;quality&quot; : 0,
+    &quot;formatted_address&quot; : &quot;500 Hartwell Ave, Lexington MA 02421&quot;
+}</pre>
+
+</body>
+</html>
+[2015-01-21 14:45:21,279][INFO][p21530][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 14:45:21] "GET / HTTP/1.1" 200 -
+[2015-01-21 14:45:24,683][ERROR][p21530][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 14:45:24,684][INFO][p21530][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 14:45:24] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 14:48:05,641][ERROR][p21530][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 14:48:05,642][INFO][p21530][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 14:48:05] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 14:49:48,743][ERROR][p21530][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 14:49:48] code 400, message Bad request syntax ('GET /geocoder/?city=Lexington&country=USA&street=131 Hartwell Ave&postal_code=02421&key=32aab59a-0482-4950-b3a5-8caaec18235c&state_prov=MA HTTP/1.1')
+[2015-01-21 14:49:48,743][INFO][p21530][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 14:49:48] "GET /geocoder/?city=Lexington&country=USA&street=131 Hartwell Ave&postal_code=02421&key=32aab59a-0482-4950-b3a5-8caaec18235c&state_prov=MA HTTP/1.1" 400 -
+[2015-01-21 14:52:01,153][INFO][p21530][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 14:52:01,191][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 14:52:02,099][DEBUG][p21600][geocodeService.py:86] returning app
+[2015-01-21 14:52:02,100][DEBUG][p21600][geocodeService.py:308] Use user database: user.db
+[2015-01-21 14:52:02,100][DEBUG][p21600][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 14:58:01,797][INFO][p21600][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 14:58:01,823][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 14:58:03,095][DEBUG][p21629][geocodeService.py:86] returning app
+[2015-01-21 14:58:03,096][DEBUG][p21629][geocodeService.py:308] Use user database: user.db
+[2015-01-21 14:58:03,097][DEBUG][p21629][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:00:27,484][ERROR][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:00:27] code 400, message Bad request syntax ('GET /geocoder/?city=Lexington & country=USA & street=131 Hartwell Ave & postal_code=02421 & key=32aab59a-0482-4950-b3a5-8caaec18235c & state_prov=MA HTTP/1.1')
+[2015-01-21 15:00:27,485][INFO][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:00:27] "GET /geocoder/?city=Lexington & country=USA & street=131 Hartwell Ave & postal_code=02421 & key=32aab59a-0482-4950-b3a5-8caaec18235c & state_prov=MA HTTP/1.1" 400 -
+[2015-01-21 15:01:17,744][ERROR][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:01:17] code 400, message Bad request syntax ('GET /geocoder/?city=Lexington&country=USA&street=131 Hartwell Ave&postal_code=02421&key=32aab59a-0482-4950-b3a5-8caaec18235c&state_prov=MA HTTP/1.1')
+[2015-01-21 15:01:17,745][INFO][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:01:17] "GET /geocoder/?city=Lexington&country=USA&street=131 Hartwell Ave&postal_code=02421&key=32aab59a-0482-4950-b3a5-8caaec18235c&state_prov=MA HTTP/1.1" 400 -
+[2015-01-21 15:01:40,712][ERROR][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:01:40] code 400, message Bad request syntax ('GET /geocoder/?city=Lexington&country=USA&street=131 Hartwell Ave&postal_code=02421&key=32aab59a-0482-4950-b3a5-8caaec18235c&state_prov=MA HTTP/1.1')
+[2015-01-21 15:01:40,712][INFO][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:01:40] "GET /geocoder/?city=Lexington&country=USA&street=131 Hartwell Ave&postal_code=02421&key=32aab59a-0482-4950-b3a5-8caaec18235c&state_prov=MA HTTP/1.1" 400 -
+[2015-01-21 15:02:48,403][ERROR][p21629][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 15:02:48,405][INFO][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:02:48] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 15:02:54,480][INFO][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:02:54] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8ca5c HTTP/1.1" 401 -
+[2015-01-21 15:03:45,893][INFO][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:03:45] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8ca5c HTTP/1.1" 401 -
+[2015-01-21 15:03:48,303][ERROR][p21629][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 15:03:48,305][INFO][p21629][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:03:48] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 15:04:54,489][INFO][p21629][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 15:04:54,514][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 15:04:55,863][DEBUG][p21736][geocodeService.py:86] returning app
+[2015-01-21 15:04:55,865][DEBUG][p21736][geocodeService.py:308] Use user database: user.db
+[2015-01-21 15:04:55,866][DEBUG][p21736][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:04:57,781][DEBUG][p21736][geocodeUsers.py:46] request_user()... getting api_key from request args
+[2015-01-21 15:04:57,781][INFO][p21736][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:04:57,782][DEBUG][p21736][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:04:57,782][INFO][p21736][geocodeUsers.py:39] User testuser is found
+[2015-01-21 15:04:57,782][ERROR][p21736][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 15:04:57,784][INFO][p21736][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:04:57] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 15:12:27,827][INFO][p21736][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 15:12:27,855][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 15:12:29,070][DEBUG][p21825][geocodeService.py:86] returning app
+[2015-01-21 15:12:29,071][DEBUG][p21825][geocodeService.py:308] Use user database: user.db
+[2015-01-21 15:12:29,071][DEBUG][p21825][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:13:59,100][DEBUG][p21825][geocodeUsers.py:46] request_user()... getting api_key from request args
+[2015-01-21 15:13:59,100][INFO][p21825][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:13:59,101][DEBUG][p21825][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:13:59,101][INFO][p21825][geocodeUsers.py:36] No match
+[2015-01-21 15:13:59,102][DEBUG][p21825][geocodeUsers.py:54] request_user()... now trying from request headers
+[2015-01-21 15:13:59,103][INFO][p21825][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:13:59] "GET /geocoder/?city=Lexington&country=USA&street=131%20Hartwell%20Ave&postal_code=02421&key=testing&state_prov=MA HTTP/1.1" 401 -
+[2015-01-21 15:14:29,785][DEBUG][p21825][geocodeUsers.py:46] request_user()... getting api_key from request args
+[2015-01-21 15:14:29,786][INFO][p21825][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:14:29,786][DEBUG][p21825][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:14:29,786][INFO][p21825][geocodeUsers.py:39] User testuser is found
+[2015-01-21 15:14:30,923][INFO][p21825][geocode_main.py:143] ISO Geocoder type: A; geocoder Lat / Lon: [u'A', u'42.463098', u'-71.267265', u'N', [u'131', '', u'HARTWELL', '', u'AVE', u'LEXINGTON', u'MA', u'02421']].
+[2015-01-21 15:14:30,923][DEBUG][p21825][geocodeService.py:231] (42.463098, -71.267265) :: [geocoder_of_record 102] 
+[2015-01-21 15:14:30,924][INFO][p21825][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:14:30] "GET /geocoder/?city=Lexington&country=USA&street=131%20Hartwell%20Ave&postal_code=02421&key=32aab59a-0482-4950-b3a5-8caaec18235c&state_prov=MA HTTP/1.1" 200 -
+[2015-01-21 15:23:46,023][INFO][p21825][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 15:23:46,054][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 15:23:47,399][DEBUG][p21910][geocodeService.py:86] returning app
+[2015-01-21 15:23:47,401][DEBUG][p21910][geocodeService.py:308] Use user database: user.db
+[2015-01-21 15:23:47,401][DEBUG][p21910][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:25:48,852][DEBUG][p21910][geocodeUsers.py:52] request_user()... getting api_key from request args
+[2015-01-21 15:25:48,853][INFO][p21910][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:25:48,853][DEBUG][p21910][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:25:48,854][INFO][p21910][geocodeUsers.py:41] User testuser is found
+[2015-01-21 15:25:48,854][ERROR][p21910][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 15:25:48,855][INFO][p21910][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:25:48] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 15:26:03,170][DEBUG][p21910][geocodeUsers.py:52] request_user()... getting api_key from request args
+[2015-01-21 15:26:03,170][INFO][p21910][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:26:03,170][DEBUG][p21910][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:26:03,171][INFO][p21910][geocodeUsers.py:37] No match
+[2015-01-21 15:26:03,171][DEBUG][p21910][geocodeUsers.py:62] request_user()... now trying from request headers
+[2015-01-21 15:26:03,172][INFO][p21910][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:26:03] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8ca5c HTTP/1.1" 401 -
+[2015-01-21 15:28:03,793][DEBUG][p21910][geocodeUsers.py:52] request_user()... getting api_key from request args
+[2015-01-21 15:28:03,793][INFO][p21910][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:28:03,793][DEBUG][p21910][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:28:03,794][INFO][p21910][geocodeUsers.py:37] No match
+[2015-01-21 15:28:03,794][DEBUG][p21910][geocodeUsers.py:62] request_user()... now trying from request headers
+[2015-01-21 15:28:03,796][INFO][p21910][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:28:03] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8ca5c HTTP/1.1" 401 -
+[2015-01-21 15:34:21,119][DEBUG][p21910][geocodeUsers.py:52] request_user()... getting api_key from request args
+[2015-01-21 15:34:21,119][INFO][p21910][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:34:21,119][DEBUG][p21910][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:34:21,120][INFO][p21910][geocodeUsers.py:41] User testuser is found
+[2015-01-21 15:34:21,120][ERROR][p21910][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 15:34:21,122][INFO][p21910][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:34:21] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 15:35:32,710][INFO][p21910][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 15:35:32,738][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 15:35:34,041][DEBUG][p21998][geocodeService.py:86] returning app
+[2015-01-21 15:35:34,045][DEBUG][p21998][geocodeService.py:308] Use user database: user.db
+[2015-01-21 15:35:34,045][DEBUG][p21998][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:35:35,889][DEBUG][p21998][geocodeUsers.py:52] request_user()... getting api_key from request args
+[2015-01-21 15:35:35,889][INFO][p21998][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:35:35,889][DEBUG][p21998][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:35:35,890][INFO][p21998][geocodeUsers.py:41] User testuser is found
+[2015-01-21 15:35:35,891][ERROR][p21998][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 15:35:35,892][INFO][p21998][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:35:35] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 15:36:07,539][INFO][p21998][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 15:36:07,568][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 15:36:08,816][DEBUG][p22017][geocodeService.py:86] returning app
+[2015-01-21 15:36:08,817][DEBUG][p22017][geocodeService.py:308] Use user database: user.db
+[2015-01-21 15:36:08,818][DEBUG][p22017][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:37:45,089][INFO][p22017][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 15:37:45,115][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 15:37:46,133][DEBUG][p22044][geocodeService.py:86] returning app
+[2015-01-21 15:37:46,135][DEBUG][p22044][geocodeService.py:308] Use user database: user.db
+[2015-01-21 15:37:46,135][DEBUG][p22044][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:38:04,064][DEBUG][p22044][geocodeUsers.py:53] request_user()... getting api_key from request args
+[2015-01-21 15:38:04,065][INFO][p22044][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:38:04,065][DEBUG][p22044][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:38:04,066][INFO][p22044][geocodeUsers.py:42] User testuser is found
+[2015-01-21 15:38:04,066][ERROR][p22044][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 15:38:04,067][INFO][p22044][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:38:04] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 15:38:20,629][INFO][p22044][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 15:38:20,658][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 15:38:21,559][DEBUG][p22063][geocodeService.py:86] returning app
+[2015-01-21 15:38:21,560][DEBUG][p22063][geocodeService.py:308] Use user database: user.db
+[2015-01-21 15:38:21,560][DEBUG][p22063][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:39:53,885][DEBUG][p22063][geocodeUsers.py:53] request_user()... getting api_key from request args
+[2015-01-21 15:39:53,885][INFO][p22063][geocodeUsers.py:24] Opening user.db
+[2015-01-21 15:39:53,886][DEBUG][p22063][geocodeUsers.py:25] Key item: 1
+[2015-01-21 15:39:53,886][INFO][p22063][geocodeUsers.py:42] User testuser is found
+[2015-01-21 15:39:53,887][ERROR][p22063][geocodeService.py:221] Invalid context: Invalid Request.
+[2015-01-21 15:39:53,888][INFO][p22063][_internal.py:87] 127.0.0.1 - - [21/Jan/2015 15:39:53] "GET /geocoder/?key=32aab59a-0482-4950-b3a5-8caaec18235c HTTP/1.1" 400 -
+[2015-01-21 15:42:04,518][INFO][p22063][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/bingaling.py', reloading
+[2015-01-21 15:42:04,549][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 15:42:05,880][DEBUG][p22102][geocodeService.py:86] returning app
+[2015-01-21 15:42:05,882][DEBUG][p22102][geocodeService.py:308] Use user database: user.db
+[2015-01-21 15:42:05,882][DEBUG][p22102][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:43:03,703][INFO][p22102][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading
+[2015-01-21 15:43:03,731][INFO][p21525][_internal.py:87]  * Restarting with reloader
+[2015-01-21 15:43:05,043][DEBUG][p22120][geocodeService.py:86] returning app
+[2015-01-21 15:43:05,044][DEBUG][p22120][geocodeService.py:308] Use user database: user.db
+[2015-01-21 15:43:05,044][DEBUG][p22120][geocodeService.py:310] run app with dev_logging.cfg
+[2015-01-21 15:44:48,408][INFO][p22120][_internal.py:87]  * Detected change in '/nas/home/pmankows/projects/GeocodeWrapperEnv/lib/python2.7/site-packages/geocode-0.1-py2.7.egg/geocode/web/geocodeUsers.py', reloading

@@ -1,0 +1,17 @@
+Deploying to apache/mod_wsgi
+
+# add a WSGIDaemonProcess and a WSGIScriptAlias to /etc/httpd/conf.d/wsgi.conf
+
+WSGIDaemonProcess <PROCESS_NAME> processes=5 threads=5 \
+ python-eggs=$DEPLOY_LOC/ears_egg_cache \
+ python-path=$DEPLOY_LOC/lib/python2.7/site-packages \
+ home=$DEPLOY_LOC \
+ user=apache group=apache
+
+WSGIScriptAlias <ENDPOINT> \
+ $DEPLOY_LOC/bin/benchmark_geocoder.wsgi \
+ process-group=<PROCESS_NAME> application-group=%{GLOBAL}
+
+where PROCESS_NAME is like "geocode_v0.1" and ENDPOINT is like "/geocoder/staging"
+
+see more information: https://confluence.aer.com/display/BTS/Deploying+Geocoder+Service+to+Apache

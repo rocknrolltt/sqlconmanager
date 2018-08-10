@@ -1,0 +1,32 @@
+---
+database_configurations:
+    dev_test:
+        credentials:
+            template_ro:
+                - username
+                - password
+            template_update:
+                - username
+                - password
+            template_admin:
+                - username
+                - password
+        host: host
+        port: 0
+        dbname: database
+        dbtype: type
+    production:
+        credentials:
+            template_ro:
+                - username
+                - password
+            template_update:
+                - username
+                - password
+            template_admin:
+                - username
+                - password
+        host: host
+        port: 0
+        dbname: database
+        dbtype: type
